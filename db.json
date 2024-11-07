@@ -1,0 +1,186 @@
+{
+  "balance": [
+    {
+      "id": 1,
+      "name": "収入",
+      "value": "income"
+    },
+    {
+      "id": 2,
+      "name": "支出",
+      "value": "expenditure"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "給料",
+      "value": "salary",
+      "balanceId": 1
+    },
+    {
+      "id": 2,
+      "name": "ボーナス",
+      "value": "bonus",
+      "balanceId": 1
+    },
+    {
+      "id": 3,
+      "name": "配当",
+      "value": "dividend",
+      "balanceId": 1
+    },
+    {
+      "id": 4,
+      "name": "受取",
+      "value": "receipt",
+      "balanceId": 1
+    },
+    {
+      "id": 5,
+      "name": "その他",
+      "value": "others",
+      "balanceId": 1
+    },
+    {
+      "id": 6,
+      "name": "食費",
+      "value": "food",
+      "balanceId": 2
+    },
+    {
+      "id": 7,
+      "name": "医療費",
+      "value": "medical",
+      "balanceId": 2
+    },
+    {
+      "id": 8,
+      "name": "光熱費",
+      "value": "energy",
+      "balanceId": 2
+    },
+    {
+      "id": 9,
+      "name": "服飾費",
+      "value": "clothing",
+      "balanceId": 2
+    },
+    {
+      "id": 10,
+      "name": "娯楽",
+      "value": "amusement",
+      "balanceId": 2
+    },
+    {
+      "id": 11,
+      "name": "交際費",
+      "value": "entertainment",
+      "balanceId": 2
+    },
+    {
+      "id": 12,
+      "name": "雑費",
+      "value": "miscellaneous ",
+      "balanceId": 2
+    },
+    {
+      "id": 13,
+      "name": "保険",
+      "value": "insurance",
+      "balanceId": 2
+    },
+    {
+      "id": 14,
+      "name": "住居費",
+      "value": "housing",
+      "balanceId": 2
+    },
+    {
+      "id": 15,
+      "name": "その他",
+      "value": "others",
+      "balanceId": 2
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "uuid": "user1"
+    }
+  ],
+  "userEarnings": [
+    {
+      "id": 1,
+      "userId": 1,
+      "earnings": 28000,
+      "income": 49000,
+      "expenditure": 21000,
+      "dateYM": "202301"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "earnings": -3000,
+      "income": 0,
+      "expenditure": 3000,
+      "dateYM": "202302"
+    }
+  ],
+  "householdHistories": [
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": 1000,
+      "date": "20230101",
+      "balance": "expenditure",
+      "category": "食費",
+      "content": "外食"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "amount": 30000,
+      "date": "20230105",
+      "balance": "income",
+      "category": "受取",
+      "content": "お年玉"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "amount": 15000,
+      "date": "20230110",
+      "balance": "expenditure",
+      "category": "服飾費",
+      "content": "カルバンクライン"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "amount": 19000,
+      "date": "20230115",
+      "balance": "income",
+      "category": "配当",
+      "content": "競馬"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "amount": 5000,
+      "date": "20230122",
+      "balance": "expenditure",
+      "category": "娯楽",
+      "content": "競馬"
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "amount": 3000,
+      "date": "20230203",
+      "balance": "expenditure",
+      "category": "雑費",
+      "content": "セロハンテープ"
+    }
+  ]
+}
