@@ -1,6 +1,6 @@
 import { client } from '@/lib/api-client';
 import { GETBalanceResponse } from '../models/balance-response';
-import useSWR from 'swr';
+import useSWRImmutable from 'swr/immutable';
 import { ApiError } from '../models/api-error';
 import { ClientFetchResponse, ClientSWRResponse, SelectPair } from '@/types';
 import { API_ENDPOINT } from '@/constants/api-endpoint';
@@ -18,7 +18,8 @@ export function useGetBalance(): ClientSWRResponse<
   ApiError,
   Boolean
 > {
-  const res = useSWR(`/api/${API_ENDPOINT.BALANCE}`, fetcher);
+  const res = useSWRImmutable(`/api/${API_ENDPOINT.BALANCE}`, fetcher);
+
   if (!res.data) {
     return {
       data: undefined,
