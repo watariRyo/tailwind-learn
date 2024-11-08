@@ -36,3 +36,10 @@
 - まっとうなエラーハンドリング
 - msw 使っていないので、API エンドポイントを実際に合わせて要変更（主にクエリパラメータ）
 - swr のチューニング
+
+### おためし
+
+- `npm run dev`
+  Nextjs 起動
+- `npm run json-server`
+  json-server 起動（スタブ）
