@@ -2,15 +2,20 @@ import { API_ENDPOINT } from '@/constants/api-endpoint';
 import { HTTP_STATUS_200, HTTP_STATUS_500 } from '@/constants/http-status';
 import { client } from '@/lib/api-client';
 import { ApiError } from '@/repository/models/api-error';
-import { GETBalanceResponse } from '@/repository/models/balance-response';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET() {
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
-    const response = await client<GETBalanceResponse>(
-      `http://localhost:4000/${API_ENDPOINT.BALANCE}`
+    const id = (await params).id;
+    const response = await client<any>(
+      `http://localhost:4000/${API_ENDPOINT.HOUSEHOLD_HISTORIES}/${id}`,
+      {
+        method: 'DELETE',
+      }
     );
-
     return NextResponse.json(
       {
         response,

@@ -15,10 +15,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Household } from '@/types';
-import useGetBalance from '@/repository/balanace';
-import useGetCategories from '@/repository/categories';
-import useGetHouseholdHistories from '@/repository/householdHistories';
+import {
+  mutateHouseholdHistories,
+  useGetBalance,
+  useGetCategories,
+  useGetHouseholdHistories,
+} from '@/repository/hooks';
+import { deleteHouseholdHistories } from '@/repository/householdHistories';
 
 export default function Dashboard() {
   const [categorySelectPair, setCategorySelectPair] = useState<SelectPair[]>(
@@ -29,18 +32,16 @@ export default function Dashboard() {
   const balanceSWRRes = useGetBalance();
   const categoriesSWRRes = useGetCategories();
   const householdHistoriesSWRRes = useGetHouseholdHistories('202302'); // paramは暫定
+
   if (
     balanceSWRRes.isLoading ||
     categoriesSWRRes.isLoading ||
     householdHistoriesSWRRes.isLoading
   ) {
     return <></>;
-  } else if (
-    balanceSWRRes.error ||
-    categoriesSWRRes.error ||
-    householdHistoriesSWRRes.error
-  ) {
-    return <>Something Went Wrong.</>;
+  }
+  if (balanceSWRRes.error || categoriesSWRRes.error) {
+    return <>Something Went Wrong</>;
   }
 
   function changeBlanace(value: string) {
@@ -56,6 +57,17 @@ export default function Dashboard() {
         ]);
       }
     });
+  }
+
+  async function deleteHouseholdHistory(id: number) {
+    const res = await deleteHouseholdHistories(id); // param固定
+    if (res.error) {
+      return;
+    }
+    const updateData = householdHistoriesSWRRes.data?.filter(
+      (item) => item.id !== id
+    );
+    mutateHouseholdHistories(updateData!, '202302'); // param固定
   }
 
   const dialogBody = (
@@ -234,7 +246,7 @@ export default function Dashboard() {
                   ) : (
                     <TableCell>{item.content}</TableCell>
                   )}
-                  <TableCell onClick={() => alert(item.id)}>
+                  <TableCell onClick={() => deleteHouseholdHistory(item.id)}>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
                       width='24'

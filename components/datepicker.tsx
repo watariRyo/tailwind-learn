@@ -15,7 +15,6 @@ export default function Datepicker(props: DatepickerProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleDateSelect = (date: Date | undefined) => {
-    console.log(date);
     setDate(date);
     setIsOpen(false); // 日付選択後にPopoverを閉じる
   };

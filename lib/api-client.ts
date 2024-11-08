@@ -24,7 +24,6 @@ export async function client<T>(
   const contentType = response.headers.get('Content-Type') || '';
 
   if (!response.ok) {
-    console.log('ng');
     const serverErrorContent = isJson(contentType)
       ? ((await response.json()) as ErrorResponseSchema)
       : undefined;

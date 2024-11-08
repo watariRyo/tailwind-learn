@@ -31,8 +31,13 @@ export type Household = {
   content: string;
 };
 
-export interface ClientResponse<Data = any, Error = ApiError, Config = any> {
+export interface ClientSWRResponse<Data = any, Error = ApiError, Config = any> {
   data: BlockingData<Data, Config> extends true ? Data : Data | undefined;
   error: ApiError | undefined;
   isLoading: IsLoadingResponse<Data, Config>;
+}
+
+export interface ClientFetchResponse<Response = any, Error = ApiError> {
+  response: BlockingData<Data, Config> extends true ? Data : Data | undefined;
+  error: ApiError | undefined;
 }

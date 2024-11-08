@@ -1,33 +1,27 @@
 import { client } from '@/lib/api-client';
-import useSWR from 'swr';
+import { ClientFetchResponse } from '@/types';
 import { ApiError } from './models/api-error';
-import { ClientResponse } from '@/types';
-import { GETHouseholdHistoryResponse } from './models/householdHistory-response';
+import { API_ENDPOINT } from '@/constants/api-endpoint';
 
-async function fetcher(key: string) {
-  return await client<GETHouseholdHistoryResponse[] | ApiError>(key).then(
-    (res) => {
-      return res;
-    }
-  );
+async function deleteFetcher(key: string) {
+  return await client<any>(key, {
+    method: 'DELETE',
+  }).then((res) => res);
 }
 
-export default function useGetHouseholdHistories(
-  dateYM: string
-): ClientResponse<GETHouseholdHistoryResponse[], ApiError, Boolean> {
-  // json-serverの仕様上、妙なクエリになる
-  const res = useSWR('/api/householdHistories?date_lte=202302', fetcher);
-  if (res.data instanceof ApiError) {
+export async function deleteHouseholdHistories(
+  id: number
+): Promise<ClientFetchResponse<any, ApiError>> {
+  try {
+    await deleteFetcher(`/api/${API_ENDPOINT.HOUSEHOLD_HISTORIES}/${id}`);
     return {
-      data: [],
-      error: res.data,
-      isLoading: res.isLoading,
-    };
-  } else {
-    return {
-      data: res.data,
+      response: {},
       error: undefined,
-      isLoading: res.isLoading,
+    };
+  } catch (error) {
+    return {
+      response: {},
+      error: error as ApiError,
     };
   }
 }
