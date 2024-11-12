@@ -16,20 +16,25 @@ async function fetcher(key: string) {
 export function useGetCategories(): ClientSWRResponse<
   GETCategoryResponse[],
   ApiError,
-  Boolean
+  boolean
 > {
-  const res = useSWR(`/api/${API_ENDPOINT.CATEGORIES}`, fetcher);
-  if (res.data instanceof ApiError) {
+  const { data, error, isLoading, mutate } = useSWR(
+    `/api/${API_ENDPOINT.CATEGORIES}`,
+    fetcher
+  );
+  if (data instanceof ApiError) {
     return {
       data: [],
-      error: res.error,
-      isLoading: res.isLoading,
+      error: error,
+      isLoading: isLoading,
+      mutate: mutate,
     };
   } else {
     return {
-      data: res.data?.response,
+      data: data?.response,
       error: undefined,
-      isLoading: res.isLoading,
+      isLoading: isLoading,
+      mutate: mutate,
     };
   }
 }

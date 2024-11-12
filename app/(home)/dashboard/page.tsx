@@ -16,7 +16,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import {
-  mutateHouseholdHistories,
   useGetBalance,
   useGetCategories,
   useGetHouseholdHistories,
@@ -64,28 +63,19 @@ export default function Dashboard() {
     if (res.error) {
       return;
     }
-    const updateData = householdHistoriesSWRRes.data?.filter(
-      (item) => item.id !== id
-    );
-    mutateHouseholdHistories(updateData!, '202302'); // param固定
+    householdHistoriesSWRRes.mutate();
   }
 
   const dialogBody = (
     <div className='grid gap-4 py-4'>
       <div className='grid grid-cols-4 items-center gap-4'>
-        <Label
-          htmlFor='date'
-          className='text-right'
-        >
+        <Label htmlFor='date' className='text-right'>
           日付
         </Label>
         <Datepicker id='date' />
       </div>
       <div className='grid grid-cols-4 items-center gap-4'>
-        <Label
-          htmlFor='balance'
-          className='text-right'
-        >
+        <Label htmlFor='balance' className='text-right'>
           収支
         </Label>
         <SelectCommon
@@ -96,10 +86,7 @@ export default function Dashboard() {
         />
       </div>
       <div className='grid grid-cols-4 items-center gap-4'>
-        <Label
-          htmlFor='category'
-          className='text-right'
-        >
+        <Label htmlFor='category' className='text-right'>
           カテゴリ
         </Label>
         <SelectCommon
@@ -110,29 +97,16 @@ export default function Dashboard() {
         />
       </div>
       <div className='grid grid-cols-4 items-center gap-4'>
-        <Label
-          htmlFor='content'
-          className='text-right'
-        >
+        <Label htmlFor='content' className='text-right'>
           内容
         </Label>
-        <Input
-          id='content'
-          className='col-span-3'
-        />
+        <Input id='content' className='col-span-3' />
       </div>
       <div className='grid grid-cols-4 items-center gap-4'>
-        <Label
-          htmlFor='amount'
-          className='text-right'
-        >
+        <Label htmlFor='amount' className='text-right'>
           金額
         </Label>
-        <Input
-          id='amount'
-          defaultValue='0'
-          className='col-span-3'
-        />
+        <Input id='amount' defaultValue='0' className='col-span-3' />
       </div>
     </div>
   );
@@ -140,10 +114,7 @@ export default function Dashboard() {
   return (
     <div className='container'>
       <div>
-        <UpdateDialog
-          title='内訳追加'
-          body={dialogBody}
-        />
+        <UpdateDialog title='内訳追加' body={dialogBody} />
       </div>
       <div className='mt-2 grid grid-cols-3 gap-4'>
         <div className='border border-blue-300 rounded-lg bg-blue-100 h-16 flex flex-col gap-1'>
@@ -168,36 +139,11 @@ export default function Dashboard() {
               strokeLinejoin='round'
               className='lucide lucide-landmark'
             >
-              <line
-                x1='3'
-                x2='21'
-                y1='22'
-                y2='22'
-              />
-              <line
-                x1='6'
-                x2='6'
-                y1='18'
-                y2='11'
-              />
-              <line
-                x1='10'
-                x2='10'
-                y1='18'
-                y2='11'
-              />
-              <line
-                x1='14'
-                x2='14'
-                y1='18'
-                y2='11'
-              />
-              <line
-                x1='18'
-                x2='18'
-                y1='18'
-                y2='11'
-              />
+              <line x1='3' x2='21' y1='22' y2='22' />
+              <line x1='6' x2='6' y1='18' y2='11' />
+              <line x1='10' x2='10' y1='18' y2='11' />
+              <line x1='14' x2='14' y1='18' y2='11' />
+              <line x1='18' x2='18' y1='18' y2='11' />
               <polygon points='12 2 20 7 4 7' />
             </svg>
             <p className='pl-1'>残高</p>
@@ -262,18 +208,8 @@ export default function Dashboard() {
                       <path d='M3 6h18' />
                       <path d='M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6' />
                       <path d='M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2' />
-                      <line
-                        x1='10'
-                        x2='10'
-                        y1='11'
-                        y2='17'
-                      />
-                      <line
-                        x1='14'
-                        x2='14'
-                        y1='11'
-                        y2='17'
-                      />
+                      <line x1='10' x2='10' y1='11' y2='17' />
+                      <line x1='14' x2='14' y1='11' y2='17' />
                     </svg>
                   </TableCell>
                 </TableRow>

@@ -16,19 +16,23 @@ async function fetcher(key: string) {
 export function useGetBalance(): ClientSWRResponse<
   SelectPair[],
   ApiError,
-  Boolean
+  boolean
 > {
-  const res = useSWRImmutable(`/api/${API_ENDPOINT.BALANCE}`, fetcher);
+  const { data, error, isLoading } = useSWRImmutable(
+    `/api/${API_ENDPOINT.BALANCE}`,
+    fetcher
+  );
 
-  if (!res.data) {
+  if (!data) {
     return {
       data: undefined,
-      error: res.error,
-      isLoading: res.isLoading,
+      error: error,
+      isLoading: isLoading,
+      mutate: undefined,
     };
   } else {
     const balanceSelectPair: SelectPair[] = [];
-    const dataArray = res.data.response as unknown as GETBalanceResponse[];
+    const dataArray = data.response as unknown as GETBalanceResponse[];
     dataArray.forEach((item) => {
       balanceSelectPair.push({
         label: item.name,
@@ -39,7 +43,8 @@ export function useGetBalance(): ClientSWRResponse<
     return {
       data: balanceSelectPair,
       error: undefined,
-      isLoading: res.isLoading,
+      isLoading: isLoading,
+      mutate: undefined,
     };
   }
 }

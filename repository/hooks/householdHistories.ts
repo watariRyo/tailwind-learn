@@ -1,5 +1,5 @@
 import { client } from '@/lib/api-client';
-import useSWR, { mutate } from 'swr';
+import useSWR from 'swr';
 import { ApiError } from '../models/api-error';
 import { ClientFetchResponse, ClientSWRResponse } from '@/types';
 import { GETHouseholdHistoryResponse } from '../models/householdHistory-response';
@@ -15,34 +15,25 @@ async function getFetcher(key: string) {
 
 export function useGetHouseholdHistories(
   dateYM: string
-): ClientSWRResponse<GETHouseholdHistoryResponse[], ApiError, Boolean> {
+): ClientSWRResponse<GETHouseholdHistoryResponse[], ApiError, boolean> {
   // json-serverの仕様上、妙なクエリになる
-  const res = useSWR(
+  const { data, error, isLoading, mutate } = useSWR(
     `/api/${API_ENDPOINT.HOUSEHOLD_HISTORIES}?date_lte=${dateYM}`,
     getFetcher
   );
-  if (res.data instanceof ApiError) {
+  if (data instanceof ApiError) {
     return {
       data: [],
-      error: res.error,
-      isLoading: res.isLoading,
+      error: error,
+      isLoading: isLoading,
+      mutate: mutate,
     };
   } else {
     return {
-      data: res.data?.response,
+      data: data?.response,
       error: undefined,
-      isLoading: res.isLoading,
+      isLoading: isLoading,
+      mutate: mutate,
     };
   }
-}
-
-export function mutateHouseholdHistories(
-  data: GETHouseholdHistoryResponse[],
-  dateYM: string
-) {
-  mutate(
-    `/api/${API_ENDPOINT.HOUSEHOLD_HISTORIES}?date_lte=${dateYM}`,
-    data,
-    false
-  );
 }

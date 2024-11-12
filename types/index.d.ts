@@ -35,6 +35,7 @@ export interface ClientSWRResponse<Data = any, Error = ApiError, Config = any> {
   data: BlockingData<Data, Config> extends true ? Data : Data | undefined;
   error: ApiError | undefined;
   isLoading: IsLoadingResponse<Data, Config>;
+  mutate: KeyedMutator<ClientFetchResponse<Data[], ApiError>>;
 }
 
 export interface ClientFetchResponse<Response = any, Error = ApiError> {
