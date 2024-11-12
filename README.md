@@ -11,14 +11,14 @@
 
 ### ディレクトリ構成（自動生成除く）
 
-|- app // page 配置
-|- components // 各種共通 tsx
-| |\_ ui // shadcn/ui が入る
-|- config // env に入れない config 系
-|- lib // helper や utils
-|- repository // api アクセスクラス
-| |\_ models // リクエストやレスポンスの型
-|- types // 型定義
+|- app // page 配置  
+|- components // 各種共通 tsx  
+| |\_ ui // shadcn/ui が入る  
+|- config // env に入れない config 系  
+|- lib // helper や utils  
+|- repository // api アクセスクラス  
+| |\_ models // リクエストやレスポンスの型  
+|- types // 型定義  
 
 ### 備忘
 
