@@ -6,6 +6,6 @@ export const siteConfig: SiteConfig = {
   url: 'http://localhost:3000',
   ogImage: '',
   links: {
-    github: 'https://github.com/watariRyo',
+    github: 'https://github.com/watariRyo/tailwind-learn',
   },
 };
