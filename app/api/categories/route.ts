@@ -9,7 +9,7 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     const response = await client<GETCategoryResponse>(
-      `http://localhost:4000/${API_ENDPOINT.CATEGORIES}`
+      `${process.env.BACKEND_ENDPOINT}${API_ENDPOINT.CATEGORIES}`
     );
 
     return NextResponse.json(

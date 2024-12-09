@@ -11,7 +11,7 @@ export async function DELETE(
   try {
     const id = (await params).id;
     const response = await client<any>(
-      `http://localhost:4000/${API_ENDPOINT.HOUSEHOLD_HISTORIES}/${id}`,
+      `${process.env.BACKEND_ENDPOINT}${API_ENDPOINT.HOUSEHOLD_HISTORIES}/${id}`,
       {
         method: 'DELETE',
       }

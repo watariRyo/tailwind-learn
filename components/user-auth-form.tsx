@@ -10,7 +10,6 @@ import { useState } from 'react';
 import { Icon } from './icon';
 
 export default function UserAuthForm() {
-    const [isGithubLoading, setIsGithubLoading] = useState<boolean>(false);
     const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false);
 
     return (
@@ -18,11 +17,15 @@ export default function UserAuthForm() {
         <form>
         <div className='grid gap-2'>
             <div className='grid gap-1'>
-            <Label htmlFor='email'>メールアドレス</Label>
-            <Input id='email' placeholder='name@example.com' type='email' />
+                <Label htmlFor='email'>メールアドレス</Label>
+                <Input id='email' placeholder='name@example.com' type='email' />
+            </div>
+            <div className='grid gap-1'>
+                <Label htmlFor='password'>パスワード</Label>
+                <Input id='password' type='password' />
             </div>
             <button className={cn(buttonVariants())}>
-            メールアドレスでログイン
+                メールアドレスでログイン
             </button>
         </div>
         </form>

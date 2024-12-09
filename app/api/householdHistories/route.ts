@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
     const params = req.nextUrl.searchParams;
     const dateLteQuery = params.get(getDateLteParam);
     const response = await client<GETBalanceResponse>(
-      `http://localhost:4000/${API_ENDPOINT.HOUSEHOLD_HISTORIES}?${getDateLteParam}=${dateLteQuery}`
+      `${process.env.BACKEND_ENDPOINT}${API_ENDPOINT.HOUSEHOLD_HISTORIES}?${getDateLteParam}=${dateLteQuery}`
     );
     return NextResponse.json(
       {
